@@ -1,0 +1,8 @@
+project:
+  name: macd_crossover
+paths:
+  data_raw: data/raw
+  data_processed: data/processed
+  output_charts: output/charts
+  output_reports: output/reports
+  output_trades: output/trades
