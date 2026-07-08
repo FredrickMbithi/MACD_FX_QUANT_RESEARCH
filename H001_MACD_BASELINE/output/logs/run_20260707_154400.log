@@ -1,0 +1,23 @@
+2026-07-07 15:44:00,931 [INFO] Pipeline started (config: config.yaml)
+2026-07-07 15:44:00,976 [WARNING] timestamp_gaps: Found 160 gap(s) larger than the inferred bar interval (0 days 04:00:00). Some of these are likely normal (weekends, holidays) - review the timestamps below.
+Largest gaps (timestamp is the bar right after the gap):
+  2023-12-25 22:00:00 (gap of 3 days 04:00:00, expected 0 days 04:00:00)
+  2024-01-01 22:00:00 (gap of 3 days 04:00:00, expected 0 days 04:00:00)
+  2024-11-03 22:00:00 (gap of 2 days 05:00:00, expected 0 days 04:00:00)
+  2025-11-02 22:00:00 (gap of 2 days 05:00:00, expected 0 days 04:00:00)
+  2023-11-05 22:00:00 (gap of 2 days 05:00:00, expected 0 days 04:00:00)
+  2025-07-20 21:00:00 (gap of 2 days 04:00:00, expected 0 days 04:00:00)
+  2025-06-15 21:00:00 (gap of 2 days 04:00:00, expected 0 days 04:00:00)
+  2025-06-22 21:00:00 (gap of 2 days 04:00:00, expected 0 days 04:00:00)
+  2025-06-29 21:00:00 (gap of 2 days 04:00:00, expected 0 days 04:00:00)
+  2025-07-06 21:00:00 (gap of 2 days 04:00:00, expected 0 days 04:00:00)
+  ... and 150 more
+2026-07-07 15:44:00,977 [WARNING] price_range_outliers: Found 6 bar(s) with a high-low range more than 10x the typical deviation from the median range (robust z-score).
+Rows: [2175, 2761, 2763, 2889, 3173, 3244]
+2026-07-07 15:44:00,977 [INFO] Data validated: 4663 row(s), 0 error(s), 2 warning(s)
+2026-07-07 15:44:00,980 [INFO] Indicators calculated (EMA/MACD/Signal/Histogram)
+2026-07-07 15:44:15,412 [INFO] Signals generated: 166 crossover(s) found
+2026-07-07 15:44:15,429 [INFO] Backtest complete: 148 trade(s) executed
+2026-07-07 15:44:15,440 [INFO] Exported Quant Analyzer CSV to output/quant_analyzer.csv
+2026-07-07 15:44:15,441 [INFO] Export column count matches Quant Analyzer's Format #3 - OK
+2026-07-07 15:44:15,441 [INFO] Pipeline finished successfully.

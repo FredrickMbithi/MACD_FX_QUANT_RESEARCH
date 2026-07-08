@@ -1,0 +1,26 @@
+2026-07-07 23:36:53,944 [INFO] Pipeline started (config: config.yaml)
+2026-07-07 23:36:54,189 [WARNING] timestamp_gaps: Found 561 gap(s) larger than the inferred bar interval (0 days 01:00:00). Some of these are likely normal (weekends, holidays) - review the timestamps below.
+Largest gaps (timestamp is the bar right after the gap):
+  2022-12-26 22:00:00 (gap of 3 days 01:00:00, expected 0 days 01:00:00)
+  2020-12-27 22:00:00 (gap of 3 days 01:00:00, expected 0 days 01:00:00)
+  2021-01-03 22:00:00 (gap of 3 days 01:00:00, expected 0 days 01:00:00)
+  2024-01-01 22:00:00 (gap of 3 days 01:00:00, expected 0 days 01:00:00)
+  2023-12-25 22:00:00 (gap of 3 days 01:00:00, expected 0 days 01:00:00)
+  2023-01-02 01:00:00 (gap of 2 days 06:00:00, expected 0 days 01:00:00)
+  2018-01-22 00:00:00 (gap of 2 days 03:00:00, expected 0 days 01:00:00)
+  2025-11-02 22:00:00 (gap of 2 days 02:00:00, expected 0 days 01:00:00)
+  2021-11-07 22:00:00 (gap of 2 days 02:00:00, expected 0 days 01:00:00)
+  2020-11-01 22:00:00 (gap of 2 days 02:00:00, expected 0 days 01:00:00)
+  ... and 551 more
+2026-07-07 23:36:54,189 [WARNING] price_range_outliers: Found 169 bar(s) with a high-low range more than 10x the typical deviation from the median range (robust z-score).
+Rows: [100, 461, 462, 473, 545, 682, 686, 1287, 1998, 2671, 2756, 2776, 2851, 2882, 2952, 2961, 2964, 2965, 2968, 2976] ... and 149 more
+2026-07-07 23:36:54,189 [WARNING] low_volume_bars: Found 3 bar(s) with tick_volume <= 5 (thin-liquidity prints - not wrong, but worth reviewing before use in volume-sensitive signals).
+Rows: [12355, 12356, 12453]
+2026-07-07 23:36:54,189 [INFO] Data validated: 65315 row(s), 0 error(s), 3 warning(s)
+2026-07-07 23:36:54,203 [INFO] Indicators calculated (TRIX/Signal)
+2026-07-07 23:40:16,290 [INFO] Signals generated: 1641 crossover(s) found
+2026-07-07 23:40:16,290 [INFO] Risk sizing enabled: initial balance 10000.00, risk 0.250%, daily drawdown 0.500%, stop 30.0 pips, lot size 0.083333
+2026-07-07 23:40:16,854 [INFO] Backtest complete: 450 trade(s) executed
+2026-07-07 23:40:16,873 [INFO] Exported Quant Analyzer CSV to output/quant_analyzer.csv
+2026-07-07 23:40:16,873 [INFO] Export column count matches Quant Analyzer's Format #3 - OK
+2026-07-07 23:40:16,874 [INFO] Pipeline finished successfully.

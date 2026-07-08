@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+data/features/*.csv
+data/processed/*.csv
+data/trades/*.csv
+models/*.pkl
+reports/*.csv
+reports/*.md

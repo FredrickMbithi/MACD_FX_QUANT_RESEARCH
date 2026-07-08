@@ -1,8 +1,56 @@
-project:
-  name: macd_crossover
-paths:
-  data_raw: data/raw
-  data_processed: data/processed
-  output_charts: output/charts
-  output_reports: output/reports
-  output_trades: output/trades
+# Sample config.yaml for H001_MACD_BASELINE
+#
+# H001 is a stop-and-reverse strategy: a position stays open until the
+# OPPOSITE crossover signal arrives, then closes and reverses - there
+# is no stop_loss_distance/take_profit_distance key, because this
+# strategy has no fixed exit level at all (see execution.py's module
+# docstring).
+#
+# This documents the exact keys main.py reads. If your existing
+# config.yaml still has a "risk" section with stop_loss_distance/
+# take_profit_distance, remove those two keys - they're no longer read
+# anywhere in the pipeline.
+
+data:
+  raw_csv_path: data/raw/EURUSD_H1_20160101_20260702_20260703_164510.csv
+  symbol: EURUSD
+  timeframe: H1
+
+strategy:
+  signal_source: trix
+  trix_period: 14
+  trix_signal_span: 9
+
+signals:
+  # H4-scaled HMM settings. These preserve the rough physical-time
+  # intent of a M15 setup with vol_window=96, refit_interval=100, and
+  # train_window=10000.
+  # feature_set controls the HMM observation vector; default is the
+  # current close-return/volatility pair, while "ohlcv_stationary"
+  # enables the OHLCV-derived feature recipe in signals.py.
+  feature_set: ohlcv_stationary
+  vol_window: 6
+  refit_interval: 6
+  train_window: 625
+
+risk:
+  per_trade_percent: 0.25
+  daily_drawdown_percent: 0.5
+
+position:
+  lot_size: 1.0
+
+costs:
+  commission_per_lot: 7.0
+  swap_long_per_night: -2.5
+  swap_short_per_night: 0.3
+
+output:
+  output_dir: output
+  log_dir: output/logs
+  quant_analyzer_filename: quant_analyzer.csv
+  # Column count Quant Analyzer's auto-detected Format #3 expects (15).
+  # main.py checks the export's column count against this as a final
+  # sanity check - see export.py's module docstring for why a column-
+  # count check replaced the earlier header-text comparison.
+  expected_column_count: 15

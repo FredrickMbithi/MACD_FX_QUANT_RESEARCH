@@ -1,0 +1,24 @@
+2026-07-07 23:02:49,589 [INFO] Pipeline started (config: config.yaml)
+2026-07-07 23:02:49,735 [WARNING] timestamp_gaps: Found 556 gap(s) larger than the inferred bar interval (0 days 04:00:00). Some of these are likely normal (weekends, holidays) - review the timestamps below.
+Largest gaps (timestamp is the bar right after the gap):
+  2021-01-03 22:00:00 (gap of 3 days 04:00:00, expected 0 days 04:00:00)
+  2018-01-01 22:00:00 (gap of 3 days 04:00:00, expected 0 days 04:00:00)
+  2020-12-27 22:00:00 (gap of 3 days 04:00:00, expected 0 days 04:00:00)
+  2024-01-01 22:00:00 (gap of 3 days 04:00:00, expected 0 days 04:00:00)
+  2023-12-25 22:00:00 (gap of 3 days 04:00:00, expected 0 days 04:00:00)
+  2017-12-25 22:00:00 (gap of 3 days 04:00:00, expected 0 days 04:00:00)
+  2022-12-26 22:00:00 (gap of 3 days 04:00:00, expected 0 days 04:00:00)
+  2020-06-08 01:00:00 (gap of 2 days 08:00:00, expected 0 days 04:00:00)
+  2018-01-22 02:00:00 (gap of 2 days 08:00:00, expected 0 days 04:00:00)
+  2021-11-07 22:00:00 (gap of 2 days 05:00:00, expected 0 days 04:00:00)
+  ... and 546 more
+2026-07-07 23:02:49,736 [WARNING] price_range_outliers: Found 19 bar(s) with a high-low range more than 10x the typical deviation from the median range (robust z-score).
+Rows: [744, 745, 746, 747, 748, 772, 831, 1194, 4478, 6550, 6560, 10481, 10482, 10483, 10484, 10485, 10496, 10497, 10682]
+2026-07-07 23:02:49,736 [INFO] Data validated: 16337 row(s), 0 error(s), 2 warning(s)
+2026-07-07 23:02:49,743 [INFO] Indicators calculated (TRIX/Signal)
+2026-07-07 23:03:55,618 [INFO] Signals generated: 448 crossover(s) found
+2026-07-07 23:03:55,619 [INFO] Risk sizing enabled: initial balance 10000.00, risk 0.250%, daily drawdown 0.500%, stop 30.0 pips, lot size 0.083333
+2026-07-07 23:03:55,850 [INFO] Backtest complete: 443 trade(s) executed
+2026-07-07 23:03:55,882 [INFO] Exported Quant Analyzer CSV to output/quant_analyzer.csv
+2026-07-07 23:03:55,882 [INFO] Export column count matches Quant Analyzer's Format #3 - OK
+2026-07-07 23:03:55,882 [INFO] Pipeline finished successfully.

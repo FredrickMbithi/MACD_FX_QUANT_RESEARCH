@@ -84,19 +84,17 @@ Are duplicate entries prevented?
 ### 6. Exit Logic
 
 Why does the trade exit?
-Is the stop-loss logically placed?
-Is the take-profit justified?
-Should exits be fixed or dynamic?
-What happens if stop and target are touched in the same bar?
+Is the opposite-signal exit logically timed?
+Should exits be signal-driven, fixed, or dynamic?
+What happens when a reversal signal appears immediately after entry?
 Should trades have a maximum holding time?
 
 ### 7. Risk Management
 
-Is the stop-loss too tight?
-Is it too wide?
+Is uncapped signal-to-signal risk too wide?
 Is risk consistent across trades?
-Is the strategy dependent on a specific risk-to-reward ratio?
-What happens if the risk-to-reward changes?
+Is the strategy dependent on a specific exit rule?
+What happens if the exit rule changes?
 Would ATR-based stops perform better?
 Would trailing stops improve results?
 

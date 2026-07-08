@@ -1,0 +1,83 @@
+# H002_HMM_REGIME_FILTER
+#
+# Research objective:
+# Test whether latent market regimes inferred from bar-level EURUSD H4
+# features condition the performance of the frozen H001 MACD crossover
+# strategy. The HMM must not generate signals or optimize MACD parameters.
+
+data:
+  raw_csv_path: ../../data/raw/EURUSD_H4_20160101_20260702_20260703_164520.csv
+  symbol: EURUSD
+  timestamp_col: time_utc
+  open_col: open
+  high_col: high
+  low_col: low
+  close_col: close
+  volume_col: tick_volume
+
+baseline:
+  macd_fast_span: 12
+  macd_slow_span: 26
+  macd_signal_span: 9
+  lot_size: 1.0
+  stop_loss_pips: 30
+  take_profit_pips: 75
+  pip_size: 0.0001
+  commission_per_lot: 7.0
+  swap_long_per_night: -2.5
+  swap_short_per_night: 0.3
+
+features:
+  include_macd_histogram: false
+  return_windows: [1, 3]
+  realized_vol_window: 12
+  atr_window: 14
+  ema_slope_span: 24
+  ema_slope_lag: 6
+  adx_window: 14
+  warmup_bars: 60
+  selected:
+    - log_return_1
+    - log_return_3
+    - realized_volatility_12
+    - normalized_atr_14
+    - ema_slope_24_6_atr
+    - adx_14
+
+hmm:
+  state_counts: [2, 3, 4, 5]
+  covariance_types: [diag]
+  n_init: 20
+  max_iter: 500
+  tol: 0.0001
+  random_seed: 42
+  min_state_persistence: 0.70
+  min_trades_per_state: 30
+
+walk_forward:
+  train_years: 4
+  test_months: 6
+  step_months: 6
+  retraining: semiannual
+
+filter:
+  min_entry_probability: 0.60
+  confirmation_bars: 1
+  selection_metric: expectancy_r
+  min_training_expectancy_r: 0.05
+  min_training_profit_factor: 1.15
+
+statistics:
+  bootstrap_samples: 10000
+  confidence_level: 0.95
+  permutation_samples: 10000
+  random_seed: 42
+  multiple_testing: benjamini_hochberg
+
+output:
+  model_dir: models
+  report_dir: reports
+  feature_path: data/features/h002_features.csv
+  regime_path: data/processed/h002_bar_regimes.csv
+  labeled_trades_path: data/trades/h002_labeled_trades.csv
+  filtered_trades_path: data/trades/h002_filtered_trades.csv

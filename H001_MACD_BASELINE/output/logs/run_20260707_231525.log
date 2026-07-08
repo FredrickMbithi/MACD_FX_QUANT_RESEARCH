@@ -1,0 +1,26 @@
+2026-07-07 23:15:25,348 [INFO] Pipeline started (config: config.yaml)
+2026-07-07 23:15:26,068 [WARNING] timestamp_gaps: Found 2745 gap(s) larger than the inferred bar interval (0 days 00:15:00). Some of these are likely normal (weekends, holidays) - review the timestamps below.
+Largest gaps (timestamp is the bar right after the gap):
+  2020-12-27 23:00:00 (gap of 3 days 04:30:00, expected 0 days 00:15:00)
+  2023-12-25 23:00:00 (gap of 3 days 02:15:00, expected 0 days 00:15:00)
+  2024-01-01 23:00:00 (gap of 3 days 02:15:00, expected 0 days 00:15:00)
+  2017-12-25 23:00:00 (gap of 3 days 01:15:00, expected 0 days 00:15:00)
+  2021-01-03 23:00:00 (gap of 3 days 01:15:00, expected 0 days 00:15:00)
+  2019-04-21 22:00:00 (gap of 3 days 01:15:00, expected 0 days 00:15:00)
+  2026-04-05 22:00:00 (gap of 3 days 01:15:00, expected 0 days 00:15:00)
+  2024-03-31 22:00:00 (gap of 3 days 01:15:00, expected 0 days 00:15:00)
+  2021-12-26 23:00:00 (gap of 3 days 01:15:00, expected 0 days 00:15:00)
+  2020-04-12 22:00:00 (gap of 3 days 01:15:00, expected 0 days 00:15:00)
+  ... and 2735 more
+2026-07-07 23:15:26,068 [WARNING] price_range_outliers: Found 4496 bar(s) with a high-low range more than 10x the typical deviation from the median range (robust z-score).
+Rows: [4667, 9811, 11150, 11151, 11156, 11160, 11161, 11162, 11168, 12103, 14701, 15329, 15782, 15783, 16995, 20142, 20165, 28235, 34807, 38877] ... and 4476 more
+2026-07-07 23:15:26,068 [WARNING] low_volume_bars: Found 100 bar(s) with tick_volume <= 5 (thin-liquidity prints - not wrong, but worth reviewing before use in volume-sensitive signals).
+Rows: [6, 2705, 2706, 3148, 3237, 3326, 3415, 4586, 4956, 5234, 5235, 6525, 6710, 6803, 6988, 7909, 8186, 8371, 8649, 8742] ... and 80 more
+2026-07-07 23:15:26,068 [INFO] Data validated: 247432 row(s), 0 error(s), 3 warning(s)
+2026-07-07 23:15:26,122 [INFO] Indicators calculated (TRIX/Signal)
+2026-07-07 23:28:11,744 [INFO] Signals generated: 6291 crossover(s) found
+2026-07-07 23:28:11,745 [INFO] Risk sizing enabled: initial balance 10000.00, risk 0.250%, daily drawdown 0.500%, stop 30.0 pips, lot size 0.083333
+2026-07-07 23:28:13,889 [INFO] Backtest complete: 462 trade(s) executed
+2026-07-07 23:28:13,908 [INFO] Exported Quant Analyzer CSV to output/quant_analyzer.csv
+2026-07-07 23:28:13,908 [INFO] Export column count matches Quant Analyzer's Format #3 - OK
+2026-07-07 23:28:13,908 [INFO] Pipeline finished successfully.

@@ -1,0 +1,103 @@
+2026-07-04 15:06:21,267 [INFO] ======================================================================
+2026-07-04 15:06:21,267 [INFO] MACD FX Quant Research - H001 Baseline
+2026-07-04 15:06:21,268 [INFO] ======================================================================
+2026-07-04 15:06:21,268 [INFO] 
+Step 0: Loading configuration...
+2026-07-04 15:06:21,273 [INFO]   ✓ Loaded config.yaml
+2026-07-04 15:06:21,274 [INFO]     - Project: macd_crossover
+2026-07-04 15:06:21,274 [INFO]     - Stop loss: 0.002 pips
+2026-07-04 15:06:21,274 [INFO]     - Take profit: 0.004 pips
+2026-07-04 15:06:21,274 [INFO]     - Exit mode: opposite_signal (fixed/opposite_signal)
+2026-07-04 15:06:21,275 [INFO]   ✓ Output directory ready: output/trades
+2026-07-04 15:06:21,275 [INFO] 
+Step 1: Finding raw OHLC files in data/raw...
+2026-07-04 15:06:21,277 [INFO]   ✓ Found 3 CSV file(s)
+2026-07-04 15:06:21,277 [INFO]     - EURUSD_H1_20160101_20260702_20260703_164510.csv
+2026-07-04 15:06:21,277 [INFO]     - EURUSD_H4_20160101_20260702_20260703_164520.csv
+2026-07-04 15:06:21,277 [INFO]     - EURUSD_M15_20160101_20260702_20260703_164445.csv
+2026-07-04 15:06:21,278 [INFO] 
+Step 2: Processing 3 file(s)...
+2026-07-04 15:06:21,278 [INFO] 
+======================================================================
+2026-07-04 15:06:21,278 [INFO] Processing: data/raw/EURUSD_H1_20160101_20260702_20260703_164510.csv
+2026-07-04 15:06:21,278 [INFO] ======================================================================
+2026-07-04 15:06:21,278 [INFO] Step 1: Loading raw OHLC data...
+2026-07-04 15:06:21,482 [INFO]   ✓ Loaded 65312 rows
+2026-07-04 15:06:21,482 [INFO] Step 2: Validating data...
+2026-07-04 15:06:21,683 [INFO]   Data safe for research: YES
+2026-07-04 15:06:21,683 [WARNING]   ⚠ Found 2 WARNING(s):
+2026-07-04 15:06:21,683 [WARNING]     - timestamp_gaps: Found 558 gap(s) larger than the inferred bar interval (0 days 01:00:00). Some of these are likely n...
+2026-07-04 15:06:21,683 [WARNING]     - price_range_outliers: Found 163 bar(s) with a high-low range more than 10x the typical deviation from the median range (ro...
+2026-07-04 15:06:21,683 [INFO] Step 3: Calculating MACD indicators...
+2026-07-04 15:06:21,696 [INFO]   ✓ Added MACD, Signal, Histogram columns
+2026-07-04 15:06:21,696 [INFO] Step 4: Generating trading signals...
+2026-07-04 15:06:21,732 [INFO]   ✓ Generated 5163 signals (LONG/SHORT crossovers)
+2026-07-04 15:06:21,732 [INFO] Step 5: Executing trades (backtest)...
+2026-07-04 15:06:21,732 [INFO]   Using exit mode: opposite_signal (no fixed stops/targets)
+2026-07-04 15:06:21,937 [INFO]   ✓ Generated 5162 completed trades
+2026-07-04 15:06:21,939 [INFO] 
+======================================================================
+2026-07-04 15:06:21,939 [INFO] Processing: data/raw/EURUSD_H4_20160101_20260702_20260703_164520.csv
+2026-07-04 15:06:21,939 [INFO] ======================================================================
+2026-07-04 15:06:21,939 [INFO] Step 1: Loading raw OHLC data...
+2026-07-04 15:06:21,966 [INFO]   ✓ Loaded 16337 rows
+2026-07-04 15:06:21,966 [INFO] Step 2: Validating data...
+2026-07-04 15:06:22,019 [INFO]   Data safe for research: YES
+2026-07-04 15:06:22,019 [WARNING]   ⚠ Found 2 WARNING(s):
+2026-07-04 15:06:22,019 [WARNING]     - timestamp_gaps: Found 556 gap(s) larger than the inferred bar interval (0 days 04:00:00). Some of these are likely n...
+2026-07-04 15:06:22,019 [WARNING]     - price_range_outliers: Found 15 bar(s) with a high-low range more than 10x the typical deviation from the median range (rob...
+2026-07-04 15:06:22,019 [INFO] Step 3: Calculating MACD indicators...
+2026-07-04 15:06:22,025 [INFO]   ✓ Added MACD, Signal, Histogram columns
+2026-07-04 15:06:22,026 [INFO] Step 4: Generating trading signals...
+2026-07-04 15:06:22,032 [INFO]   ✓ Generated 1244 signals (LONG/SHORT crossovers)
+2026-07-04 15:06:22,032 [INFO] Step 5: Executing trades (backtest)...
+2026-07-04 15:06:22,032 [INFO]   Using exit mode: opposite_signal (no fixed stops/targets)
+2026-07-04 15:06:22,071 [INFO]   ✓ Generated 1243 completed trades
+2026-07-04 15:06:22,072 [INFO] 
+======================================================================
+2026-07-04 15:06:22,072 [INFO] Processing: data/raw/EURUSD_M15_20160101_20260702_20260703_164445.csv
+2026-07-04 15:06:22,073 [INFO] ======================================================================
+2026-07-04 15:06:22,073 [INFO] Step 1: Loading raw OHLC data...
+2026-07-04 15:06:22,540 [INFO]   ✓ Loaded 261219 rows
+2026-07-04 15:06:22,540 [INFO] Step 2: Validating data...
+2026-07-04 15:06:23,103 [INFO]   Data safe for research: YES
+2026-07-04 15:06:23,103 [WARNING]   ⚠ Found 3 WARNING(s):
+2026-07-04 15:06:23,103 [WARNING]     - timestamp_gaps: Found 568 gap(s) larger than the inferred bar interval (0 days 00:15:00). Some of these are likely n...
+2026-07-04 15:06:23,103 [WARNING]     - price_range_outliers: Found 773 bar(s) with a high-low range more than 10x the typical deviation from the median range (ro...
+2026-07-04 15:06:23,104 [WARNING]     - low_volume_bars: Found 5 bar(s) with tick_volume <= 5 (thin-liquidity prints - not wrong, but worth reviewing before ...
+2026-07-04 15:06:23,104 [INFO] Step 3: Calculating MACD indicators...
+2026-07-04 15:06:23,144 [INFO]   ✓ Added MACD, Signal, Histogram columns
+2026-07-04 15:06:23,144 [INFO] Step 4: Generating trading signals...
+2026-07-04 15:06:23,258 [INFO]   ✓ Generated 20297 signals (LONG/SHORT crossovers)
+2026-07-04 15:06:23,258 [INFO] Step 5: Executing trades (backtest)...
+2026-07-04 15:06:23,258 [INFO]   Using exit mode: opposite_signal (no fixed stops/targets)
+2026-07-04 15:06:23,954 [INFO]   ✓ Generated 20296 completed trades
+2026-07-04 15:06:23,968 [INFO] 
+Step 3: Combining results...
+2026-07-04 15:06:23,970 [INFO]   ✓ Combined 26701 total trades from all files
+2026-07-04 15:06:23,971 [INFO] 
+Step 4: Writing trades to CSV...
+2026-07-04 15:06:24,360 [INFO]   ✓ Wrote 26701 trades to output/trades/trades.csv
+2026-07-04 15:06:24,360 [INFO] 
+Step 5: Computing quantitative analysis...
+2026-07-04 15:06:24,368 [INFO]   Analysis Statistics:
+2026-07-04 15:06:24,368 [INFO]     - Total Trades: 26701
+2026-07-04 15:06:24,368 [INFO]     - Win Rate: 44.16%
+2026-07-04 15:06:24,368 [INFO]     - Total P&L: 1580320.00
+2026-07-04 15:06:24,368 [INFO]     - Sharpe Ratio: 3.63
+2026-07-04 15:06:24,368 [INFO] 
+Step 6: Writing analysis to CSV...
+2026-07-04 15:06:24,369 [INFO]   ✓ Wrote analysis to output/trades/quant_analyzer.csv
+2026-07-04 15:06:24,369 [INFO] 
+======================================================================
+2026-07-04 15:06:24,369 [INFO] Pipeline Complete!
+2026-07-04 15:06:24,369 [INFO] ======================================================================
+2026-07-04 15:06:24,369 [INFO] 
+Outputs:
+2026-07-04 15:06:24,369 [INFO]   - Trades: output/trades/trades.csv
+2026-07-04 15:06:24,369 [INFO]   - Analysis: output/trades/quant_analyzer.csv
+2026-07-04 15:06:24,370 [INFO] 
+Processing Summary:
+2026-07-04 15:06:24,370 [INFO]   - Files processed: 3
+2026-07-04 15:06:24,370 [INFO]   - Successful: 3
+2026-07-04 15:06:24,370 [INFO]   - Failed: 0
