@@ -1,15 +1,13 @@
 # Sample config.yaml for H001_MACD_BASELINE
 #
 # H001 is a stop-and-reverse strategy: a position stays open until the
-# OPPOSITE crossover signal arrives, then closes and reverses - there
-# is no stop_loss_distance/take_profit_distance key, because this
-# strategy has no fixed exit level at all (see execution.py's module
-# docstring).
+# OPPOSITE crossover signal arrives, a regime-change logic exit fires,
+# or the catastrophic stop-loss / take-profit levels are hit intrabar.
+# risk.catastrophic_sl_pips sets the fixed SL distance; the TP distance
+# is that same distance scaled by execution.DEFAULT_RISK_REWARD_RATIO
+# (see execution.run_backtest()'s STEP 2/STEP 3).
 #
-# This documents the exact keys main.py reads. If your existing
-# config.yaml still has a "risk" section with stop_loss_distance/
-# take_profit_distance, remove those two keys - they're no longer read
-# anywhere in the pipeline.
+# This documents the exact keys main.py reads.
 
 data:
   raw_csv_path: data/raw/EURUSD_H1_20160101_20260702_20260703_164510.csv
@@ -17,28 +15,23 @@ data:
   timeframe: H1
 
 strategy:
-  signal_source: trix
-  trix_period: 14
-  trix_signal_span: 9
+  signal_source: macd
+  macd_fast_period: 12
+  macd_slow_period: 26
+  macd_signal_period: 9
 
 signals:
-  # H4-scaled HMM settings. These preserve the rough physical-time
-  # intent of a M15 setup with vol_window=96, refit_interval=100, and
-  # train_window=10000.
-  # feature_set controls the HMM observation vector; default is the
-  # current close-return/volatility pair, while "ohlcv_stationary"
-  # enables the OHLCV-derived feature recipe in signals.py.
-  feature_set: ohlcv_stationary
+  feature_set:
+    - returns
+    - volatility
   vol_window: 6
-  refit_interval: 6
-  train_window: 625
+  refit_interval: 168 # Weekly refit for H1 bars (24 bars/day * 7).
+  train_window: 8760 # 1 year lookback for H1 bars (24 bars/day * 365).
 
 risk:
   per_trade_percent: 0.25
   daily_drawdown_percent: 0.5
-
-position:
-  lot_size: 1.0
+  catastrophic_sl_pips: 75.0 # Wide failsafe stop. Adjust up or down as needed.
 
 costs:
   commission_per_lot: 7.0

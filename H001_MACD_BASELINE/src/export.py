@@ -125,7 +125,7 @@ QA_FORMAT3_COLUMNS = [
     "Close Time",
     "Close Price",
     "Commission",
-    "Taxes",
+    "Exit Reason",
     "PL",
     "Raw Money Profit",
     "Swap",
@@ -150,6 +150,9 @@ REQUIRED_TRADE_COLUMNS = [
     "money_profit",
     "commission",
     "swap",
+    "exit_reason",
+    "sl_price",
+    "tp_price",
 ]
 
 
@@ -216,17 +219,22 @@ def build_qa_format3_dataframe(trades: pd.DataFrame, symbol: str) -> pd.DataFram
     output["Size"] = trades["lot_size"]
     output["Symbol"] = symbol
     output["Open Price"] = trades["entry_price"]
-    # WHY 0.0: H001 has no fixed stop-loss/take-profit (see
-    # execution.py's module docstring) - these two positions are
-    # "Unused" to Quant Analyzer regardless of their content, so 0.0
-    # here is accurate, not a placeholder standing in for something
-    # missing.
-    output["Stop Loss"] = 0.0
-    output["Take Profit"] = 0.0
+    # execution.run_backtest() now sets a real catastrophic stop-loss and
+    # risk-reward take-profit per trade (and can also close a trade via a
+    # logic exit before either is touched) - these two positions are
+    # "Unused" to Quant Analyzer's Format #3 but hold the real levels used
+    # for that trade, not a placeholder.
+    output["Stop Loss"] = trades["sl_price"]
+    output["Take Profit"] = trades["tp_price"]
     output["Close Time"] = trades["exit_time"].apply(format_timestamp)
     output["Close Price"] = trades["exit_price"]
     output["Commission"] = trades["commission"]
-    output["Taxes"] = 0.0
+    # "Exit Reason" occupies the position Format #3 calls "Taxes" (also
+    # "Unused" to Quant Analyzer) - taxes are never modeled in this
+    # pipeline, so this position is repurposed to carry which exit path
+    # closed the trade (catastrophic_stop_loss / take_profit /
+    # logic_regime_change / logic_opposite_signal), instead of a fixed 0.0.
+    output["Exit Reason"] = trades["exit_reason"]
     # WHY this is money_profit + commission + swap, not money_profit
     # alone: position 13 is the ONE field Quant Analyzer's Format #3
     # actually reads as PL - see the module docstring's explanation of
@@ -260,7 +268,7 @@ def export_trades_to_csv(
         Decimal places for price-like columns (Open/Close/Stop/Target).
     money_decimals : int, default 2
         Decimal places for money-like columns (PL, Raw Money Profit,
-        Commission, Swap, Taxes) - kept separate from price_decimals
+        Commission, Swap) - kept separate from price_decimals
         for the same reason explained in execution.calculate_money_profit()'s
         docstring: a price and a dollar amount don't share one natural
         rounding precision.
@@ -274,7 +282,7 @@ def export_trades_to_csv(
 
     price_columns = ["Open Price", "Close Price", "Stop Loss", "Take Profit"]
     formatted[price_columns] = formatted[price_columns].round(price_decimals)
-    money_columns = ["Commission", "Taxes", "PL", "Raw Money Profit", "Swap"]
+    money_columns = ["Commission", "PL", "Raw Money Profit", "Swap"]
     formatted[money_columns] = formatted[money_columns].round(money_decimals)
 
     # WHY index=False: pandas' default row-number index would be
@@ -337,7 +345,9 @@ if __name__ == "__main__":
             "money_profit": [500.0, 300.0],
             "commission": [-7.0, -7.0],
             "swap": [0.0, 0.0],
-            "exit_reason": ["reversal", "reversal"],
+            "exit_reason": ["logic_opposite_signal", "logic_opposite_signal"],
+            "sl_price": [1.0925, 1.1125],
+            "tp_price": [1.1150, 1.0950],
         }
     )
 
